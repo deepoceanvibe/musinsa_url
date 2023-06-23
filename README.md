@@ -1,4 +1,4 @@
-# musinsa_url
+# 단축 URL API 만들기
 무신사 Shorten Url 문제
 
 🦎 bitly 같은 URL 단축 서비스 만들기 다음 요구사항을 만족하는 단축 URL 생성 API 개발
