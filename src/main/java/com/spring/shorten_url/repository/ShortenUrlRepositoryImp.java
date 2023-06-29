@@ -52,4 +52,9 @@ public class ShortenUrlRepositoryImp implements ShortenUrlRepository {
     public ShortenUrl findById(int userId) {
         return shortenUrlList.get(userId);
     }
+
+    @Override
+    public List<ShortenUrl> findAll() {
+        return shortenUrlList;
+    }
 }
