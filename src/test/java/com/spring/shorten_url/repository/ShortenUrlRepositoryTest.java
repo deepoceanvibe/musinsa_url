@@ -18,7 +18,7 @@ public class ShortenUrlRepositoryTest {
     @Test
     public void createShortenUrlTest() {
         // given
-        String originalUrl = "deepoceanvibe/musinsa_url";
+        String originalUrl = "http://example.com/516584561";
 
         // when
         String shortenUrl = shortenUrlRepository.createShortenUrl(originalUrl);
@@ -26,15 +26,18 @@ public class ShortenUrlRepositoryTest {
         // then
         assertNotEquals(originalUrl, shortenUrl);
         assertFalse(shortenUrl.matches("\\d+"));
+        assertEquals(6, shortenUrl.length());
+
     }
     @Test
     public void saveTest() {
         // given
-        int userId = 0;
-        String originalUrl = "https://github.com/deepoceanvibe/spring_mvc/blob/master/src/test/java/com/spring/mvc/chap04/ScoreRepositoryTest.java#L20";
-        String shortenUrl = "https://github.com/3CPSkut";
+        int userId = 3;     // 실제 userId = 4
+        String originalUrl = "http://example.com/4";
+        String shortenUrl = "short4";
 
         ShortenUrl shortenUrlBuilder = ShortenUrl.builder()
+                .userId(userId)
                 .originalUrl(originalUrl)
                 .shortenUrl(shortenUrl)
                 .build();
@@ -44,15 +47,24 @@ public class ShortenUrlRepositoryTest {
         shortenUrlRepository.save(shortenUrlBuilder);
 
         // then
+        assertEquals(4, shortenUrlList.size());
         assertEquals(originalUrl, shortenUrlList.get(userId).getOriginalUrl());
         assertEquals(shortenUrl, shortenUrlList.get(userId).getShortenUrl());
     }
     @Test
+    public void findAllTest() {
+        // given
+        // when
+        List<ShortenUrl>shortenUrlList = shortenUrlRepository.findAll();
+        // then
+        assertEquals(3, shortenUrlList.size());
+    }
+    @Test
     public void findByIdTest() {
         // given
-        int userId = 2;
-        String originalUrl = "https://velog.io/@oceanyu/%EC%8A%A4%ED%94%84%EB%A7%81-Mybatis-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-feat.-REST%EC%84%9C%EB%B2%84";
-        String shortenUrl = "https://velog.io/4NE5dom";
+        int userId = 1;
+        String originalUrl = "http://example.com/2";
+        String shortenUrl = "short2";
 
         ShortenUrl shortenUrlBuilder = ShortenUrl.builder()
                 .userId(userId)
@@ -60,20 +72,11 @@ public class ShortenUrlRepositoryTest {
                 .shortenUrl(shortenUrl)
                 .build();
 
-        shortenUrlRepository.save(shortenUrlBuilder);
-
         // when
-        ShortenUrl shortenUrl2 = shortenUrlRepository.findById(userId);
-        // then
-        assertEquals(originalUrl, shortenUrl2.getOriginalUrl());
-        assertEquals(shortenUrl, shortenUrl2.getShortenUrl());
-    }
-    @Test
-    public void findAllTest() {
-        // given
-
-        // when
+        ShortenUrl url2 = shortenUrlRepository.findById(userId);
 
         // then
+        assertEquals(originalUrl, url2.getOriginalUrl());
+        assertEquals(shortenUrl, url2.getShortenUrl());
     }
 }

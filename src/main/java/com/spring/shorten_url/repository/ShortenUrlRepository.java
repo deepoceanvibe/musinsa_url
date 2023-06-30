@@ -13,10 +13,10 @@ public interface ShortenUrlRepository {
     // 단축 URL 저장
     void save(ShortenUrl shortenUrl);
 
-    // 단축 URL 조회
+    // 단축 URL 개별 조회
     ShortenUrl findById(int userId);
 
-    // 단축 URL 전체리스트 조회
+    // 단축 URL 전체 조회
     List<ShortenUrl> findAll();
 
 }
