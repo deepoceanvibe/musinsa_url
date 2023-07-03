@@ -4,8 +4,13 @@ package com.spring.shorten_url.controller;
 import com.spring.shorten_url.entity.ShortenUrl;
 import com.spring.shorten_url.service.ShortenUrlService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/shortenurl")
@@ -33,15 +38,18 @@ public class ShortenUrlController {
 
     @PostMapping("/main/{userId}")
     public ResponseEntity<ShortenUrl> createShortenUrl(@PathVariable String userId, @RequestParam String originalUrl) {
-
         shortenUrlService.createShortenUrl(originalUrl);
         ShortenUrl shortenUrl = shortenUrlService.findById(userId);
-
         return ResponseEntity
                 .ok(shortenUrl);
     }
 
     // 단축 URL로 요청시 원본 URL로 리다이렉트
+    @GetMapping("/{shortenUrl}")
+    public RedirectView redirect(@PathVariable String shortenUrl, @RequestParam String userId) {
+       String originalUrl = shortenUrlService.findById(userId).getOriginalUrl();
+       return new RedirectView(originalUrl);
+    }
 
 
 }
