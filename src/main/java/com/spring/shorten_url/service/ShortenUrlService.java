@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ShortenUrlService {
     List<ShortenUrl> findAll();
-    ShortenUrl findById(int userId);
+    ShortenUrl findById(String userId);
     void save(ShortenUrl shortenUrl);
     String createShortenUrl(String originalUrl);
 }

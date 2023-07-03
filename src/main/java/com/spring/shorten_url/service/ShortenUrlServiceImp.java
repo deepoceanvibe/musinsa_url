@@ -23,7 +23,7 @@ public class ShortenUrlServiceImp implements ShortenUrlService {
     }
 
     @Override
-    public ShortenUrl findById(int userId) {
+    public ShortenUrl findById(String userId) {
         return shortenUrlRepository.findById(userId);
     }
 

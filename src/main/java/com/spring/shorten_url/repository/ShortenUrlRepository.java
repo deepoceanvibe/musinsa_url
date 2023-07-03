@@ -14,7 +14,7 @@ public interface ShortenUrlRepository {
     void save(ShortenUrl shortenUrl);
 
     // 단축 URL 개별 조회
-    ShortenUrl findById(int userId);
+    ShortenUrl findById(String userId);
 
     // 단축 URL 전체 조회
     List<ShortenUrl> findAll();

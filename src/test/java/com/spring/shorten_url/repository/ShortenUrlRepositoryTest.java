@@ -32,11 +32,13 @@ public class ShortenUrlRepositoryTest {
     @Test
     public void saveTest() {
         // given
-        int userId = 3;     // 실제 userId = 4
+        int userNum = 3;
+        String userId = "hi4";
         String originalUrl = "http://example.com/4";
         String shortenUrl = "short4";
 
         ShortenUrl shortenUrlBuilder = ShortenUrl.builder()
+                .userNum(userNum)
                 .userId(userId)
                 .originalUrl(originalUrl)
                 .shortenUrl(shortenUrl)
@@ -48,8 +50,8 @@ public class ShortenUrlRepositoryTest {
 
         // then
         assertEquals(4, shortenUrlList.size());
-        assertEquals(originalUrl, shortenUrlList.get(userId).getOriginalUrl());
-        assertEquals(shortenUrl, shortenUrlList.get(userId).getShortenUrl());
+        assertEquals(originalUrl, shortenUrlList.get(userNum).getOriginalUrl());
+        assertEquals(shortenUrl, shortenUrlList.get(userNum).getShortenUrl());
     }
     @Test
     public void findAllTest() {
@@ -62,7 +64,7 @@ public class ShortenUrlRepositoryTest {
     @Test
     public void findByIdTest() {
         // given
-        int userId = 1;
+        String userId = "hi2";
         String originalUrl = "http://example.com/2";
         String shortenUrl = "short2";
 

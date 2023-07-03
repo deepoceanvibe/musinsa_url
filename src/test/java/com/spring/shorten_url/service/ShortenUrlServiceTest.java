@@ -41,7 +41,8 @@ public class ShortenUrlServiceTest {
     @Test
     public void findByIdTest() {
         // given
-        int userId = 0;
+        int userNum = 0;
+        String userId = "hi1";
         // when
         shortenUrlService.findById(userId);
         // then
@@ -51,21 +52,24 @@ public class ShortenUrlServiceTest {
     @Test
     public void saveTest() {
         // given
-        int userId = 3;
+        int userNum = 3;
+        String userId = "hi4";
         String originalUrl = "http://example.com/4495839534jjdj";
         String shortenUrl = "short4";
 
         ShortenUrl shortenUrl4 = new ShortenUrl();
+        shortenUrl4.setUserNum(userNum);
         shortenUrl4.setUserId(userId);
         shortenUrl4.setOriginalUrl(originalUrl);
         shortenUrl4.setShortenUrl(shortenUrl);
 
         // when
         shortenUrlService.save(shortenUrl4);
+        ShortenUrl result = shortenUrlService.findById(userId);
 
         // then
         assertEquals(4, shortenUrlService.findAll().size());
-        assertEquals(originalUrl, shortenUrlService.findById(userId).getOriginalUrl());
-        assertEquals(shortenUrl, shortenUrlService.findById(userId).getShortenUrl());
+        assertEquals(originalUrl, result.getOriginalUrl());
+        assertEquals(shortenUrl, result.getShortenUrl());
     }
 }

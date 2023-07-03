@@ -20,9 +20,9 @@ public class ShortenUrlRepositoryImp implements ShortenUrlRepository {
         this.shortenUrlList = new ArrayList<>();
 
         // 테스트 데이터 추가
-        ShortenUrl url1 = new ShortenUrl(1, "http://example.com/1", "short1", LocalDateTime.now(), 0);
-        ShortenUrl url2 = new ShortenUrl(2, "http://example.com/2", "short2", LocalDateTime.now(), 0);
-        ShortenUrl url3 = new ShortenUrl(3, "http://example.com/3", "short3", LocalDateTime.now(), 0);
+        ShortenUrl url1 = new ShortenUrl(1,"hi1", "http://example.com/1", "short1", LocalDateTime.now(), 0);
+        ShortenUrl url2 = new ShortenUrl(2, "hi2", "http://example.com/2", "short2", LocalDateTime.now(), 0);
+        ShortenUrl url3 = new ShortenUrl(3, "hi3", "http://example.com/3", "short3", LocalDateTime.now(), 0);
 
         // List에 데이터 추가
         shortenUrlList.add(url1);
@@ -68,8 +68,13 @@ public class ShortenUrlRepositoryImp implements ShortenUrlRepository {
     }
 
     @Override
-    public ShortenUrl findById(int userId) {
-        return shortenUrlList.get(userId);
+    public ShortenUrl findById(String userId) {
+        for (ShortenUrl shortenUrl : shortenUrlList) {
+            if (shortenUrl.getUserId().equals(userId)) {
+                return shortenUrl;
+            }
+        }
+        return null;
     }
 
     @Override

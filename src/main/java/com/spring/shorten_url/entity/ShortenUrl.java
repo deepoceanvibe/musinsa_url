@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 @ToString @Builder
 public class ShortenUrl {
 
-    private int userId;
+    private int userNum;
+    private String userId;
     private String originalUrl;
     private String shortenUrl;
     private LocalDateTime publishedAt;
