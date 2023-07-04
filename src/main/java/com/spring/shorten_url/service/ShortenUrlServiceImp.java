@@ -10,10 +10,10 @@ import java.util.List;
 @Service
 public class ShortenUrlServiceImp implements ShortenUrlService {
 
-    ShortenUrlRepository shortenUrlRepository;
+    private ShortenUrlRepository shortenUrlRepository;
 
     @Autowired
-    public ShortenUrlServiceImp(ShortenUrlRepository shortenUrlRepository) {
+    ShortenUrlServiceImp(ShortenUrlRepository shortenUrlRepository) {
         this.shortenUrlRepository = shortenUrlRepository;
     }
 

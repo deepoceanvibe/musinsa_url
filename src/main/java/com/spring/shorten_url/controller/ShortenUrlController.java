@@ -18,7 +18,7 @@ public class ShortenUrlController {
 
     private ShortenUrlService shortenUrlService;
     @Autowired
-    public ShortenUrlController(ShortenUrlService shortenUrlService) {
+    ShortenUrlController(ShortenUrlService shortenUrlService) {
         this.shortenUrlService = shortenUrlService;
     }
 
